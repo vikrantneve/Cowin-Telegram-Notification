@@ -20,6 +20,14 @@ def tweet(msg):
         msg = msg + "Рађ"
         api.update_status(msg)
 
+
+def cost_for(vaccine_fees, session_vaccine):
+    for vaccine_fee in vaccine_fees:
+        if vaccine_fee['vaccine'] == session_vaccine:
+            return vaccine_fee['fee']
+    return 'Free'
+
+
 x = 0  # counter
 
 payload = {}
@@ -79,7 +87,7 @@ while True:
 
                             txt = "For age: " + str(age) + "+"  "\nCenter: " + str(
                                 center_name) + "\nTotal Available Capacity: " + str(availability) + "\nAvailable Capacity Dose 1: " +str(dose1)+  "\nAvailable Capacity Dose 2: " +str(dose2)+ "\nVaccine: " + str(
-                                vaccine) + "\nFee Type: " + str(fee_type) + "\nDate: " + str(date) + "\nAddress: " + str(
+                                vaccine) + "\nFee Type: " + str(fee_type) + "\nCost: " + cost_for(center['vaccine_fees'], session['vaccine']) + "\nDate: " + str(date) + "\nAddress: " + str(
                                 address) + "\nPincode: " + str(
                                 pincode) + "\nBook Now: https://selfregistration.cowin.gov.in/ \n\nJai Shree Ram"
                             msg = "For age: " + str(age) + "+"  "\nCenter: " + str(
@@ -95,4 +103,3 @@ while True:
                                 print("This is tweet \n", msg)
 
     time.sleep(15)
-    
